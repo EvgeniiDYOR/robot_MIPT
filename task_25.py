@@ -8,24 +8,24 @@ def task_2_2():
 
     flag = False
     
-    def print_cross(flag):
+    def print_cross(flag_):
         for i in range(2):
             fill_cell()
             move_right()
             fill_cell()
             if wall_is_on_the_right():
-                flag = True
+                flag_ = True
         move_left()
         move_up()
         fill_cell()
         move_down(2)
         fill_cell()
-        return flag
+        return flag_
 
     move_down(2)
-    while flag != True:
+    while not flag:
         flag = print_cross(flag)
-        if flag == True:
+        if flag:
             move_left()
             move_up(2)
             break

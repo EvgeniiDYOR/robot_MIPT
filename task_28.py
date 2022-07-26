@@ -9,9 +9,8 @@ def task_7_6():
 
     while counter < 5:
         move_right()
-        if cell_is_filled() == True:
+        if cell_is_filled():
             counter += 1
-    
 
 
 if __name__ == '__main__':

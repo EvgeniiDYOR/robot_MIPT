@@ -7,16 +7,14 @@ from pyrob.api import *
 def task_7_7():
     
     counter = 0
-
-    while counter != 3:
+    while not wall_is_on_the_right():
         move_right()
-        if cell_is_filled() == True:
+        if cell_is_filled():
             counter += 1
+            if counter == 3:
+                break
         else:
             counter = 0
-        if wall_is_on_the_right() == True:
-            break
-  
 
 
 if __name__ == '__main__':

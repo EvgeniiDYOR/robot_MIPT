@@ -6,60 +6,40 @@ from pyrob.api import *
 @task(delay=0.01)
 def task_9_3():
 
-    def field_size():
-        result = 1
-        while wall_is_on_the_right() != True:
-            move_right()
-            result += 1
-        while wall_is_on_the_left() != True:
-            move_left()
-        return result
-
-    
-    def triangle_right(size):
-        for i in range(size):
-            move_right()
-            fill_cell()
+    line_size = 0
+    while not wall_is_on_the_right():
         move_right()
+        line_size += 1
 
-    def triangle_down(size):
-        for i in range(size):
+    while line_size > 0:
+        for i in range(line_size):
             move_down()
+            if i+1-line_size == 0:
+                break
             fill_cell()
-        move_down()
-
-    def triangle_left(size):
-        for i in range(size):
+        for i in range(line_size):
             move_left()
+            if i+1-line_size == 0:
+                break
             fill_cell()
-        move_left()
-
-    def triangle_up(size):
-        for i in range(size):
+        for i in range(line_size):
             move_up()
+            if i+1-line_size == 0:
+                break
             fill_cell()
-        move_up()
-
-    def finish():
-        while wall_is_beneath() != True:
-            move_down()
-        while wall_is_on_the_left() != True:
-            move_left()
-
-
-
-    size = field_size() - 2
-    while size > 0:
-        triangle_right(size)
-        triangle_down(size)
-        triangle_left(size)
-        triangle_up(size)
-        move_right()
+        for i in range(line_size):
+            move_right()
+            if i+1-line_size == 0:
+                break
+            fill_cell()
         move_down()
-        size -= 2
-    finish()
+        move_left()
+        line_size -= 2
 
-
+    while not wall_is_beneath():
+        move_down()
+    while not wall_is_on_the_left():
+        move_left()
 
 
 if __name__ == '__main__':

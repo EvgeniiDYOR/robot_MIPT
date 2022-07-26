@@ -6,36 +6,29 @@ from pyrob.api import *
 @task(delay=0.01)
 def task_8_30():
 
-    def move_to_wall_down():
-        while wall_is_beneath() != True:
-            move_down()
+    while True:
+        flag_right, flag_left = False, False
 
-    def move_to_wall_left():
-        while wall_is_on_the_left() != True:
-            move_left()
-            if wall_is_beneath() != True:
-                move_to_wall_down()
-                return False
-        return True
-
-    def move_to_wall_right():
-        while wall_is_on_the_right() != True:
+        while not wall_is_on_the_right():
             move_right()
-            if wall_is_beneath() != True:
-                move_to_wall_down()
-                return False
-        return True
+            if not wall_is_beneath():
+                while not wall_is_beneath():
+                    move_down()
+                break
+            if wall_is_on_the_right():
+                flag_right = True
 
-    finish = False
+        while not wall_is_on_the_left():
+            move_left()
+            if not wall_is_beneath():
+                while not wall_is_beneath():
+                    move_down()
+                break
+            if wall_is_on_the_left():
+                flag_left = True
 
-    while finish != True:       
-        if (move_to_wall_right() and 
-            move_to_wall_left() == True):
-            finish = True
-    
-
-
-    
+        if flag_right and flag_left:
+            break
 
 
 if __name__ == '__main__':

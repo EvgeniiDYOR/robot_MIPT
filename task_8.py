@@ -5,13 +5,10 @@ from pyrob.api import *
 
 @task
 def task_5_7():
-    for i in range(20):
+    while True:
         move_right()
-        if wall_is_above() == False and wall_is_beneath() == False:
+        if not wall_is_above() and not wall_is_beneath():
             break
-
-
-
 
 
 if __name__ == '__main__':

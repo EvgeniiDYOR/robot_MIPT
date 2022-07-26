@@ -6,13 +6,13 @@ from pyrob.api import *
 @task
 def task_3_3():
     for i in range(1):
-        if wall_is_above() == False:
+        if not wall_is_above():
             move_up()
-        elif wall_is_beneath() == False:
+        elif not wall_is_beneath():
             move_down()
-        elif wall_is_on_the_left() == False:
+        elif not wall_is_on_the_left():
             move_left()
-        elif wall_is_on_the_right() == False:
+        elif not wall_is_on_the_right():
             move_right()    
 
 

@@ -5,11 +5,11 @@ from pyrob.api import *
 
 @task
 def task_8_3():
-    while wall_is_on_the_right() != True:
-        if wall_is_above() == True or wall_is_beneath() == True:
+    while not wall_is_on_the_right():
+        if wall_is_above() or wall_is_beneath():
             fill_cell()
         move_right()
-    if wall_is_above() == True or wall_is_beneath() == True:
+    if wall_is_above() or wall_is_beneath():
         fill_cell()
 
 

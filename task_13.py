@@ -4,23 +4,21 @@ from pyrob.api import *
 
 
 @task
-
 def task_8_10():
     def color():
-        if wall_is_beneath() != True:
+        if not wall_is_beneath():
             move_down()
             fill_cell()
             move_up()
-        if wall_is_above() != True:
+        if not wall_is_above():
             move_up()
             fill_cell()
-            move_down() 
+            move_down()
 
-    while wall_is_on_the_right() != True:
+    while not wall_is_on_the_right():
         color()
-        move_right() 
-    color() 
-
+        move_right()
+    color()
 
 
 if __name__ == '__main__':
