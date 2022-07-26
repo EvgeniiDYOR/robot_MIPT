@@ -5,24 +5,29 @@ from pyrob.api import *
 
 @task(delay=0.05)
 def task_4_3():
-    def move_print_left(x):
-        for i in range(x):
-            fill_cell()
-            move_left() 
-        fill_cell()        
-    
-    def move_print_right(x):
-        for i in range(x):
+    def snake_print():
+        while True:
+            if wall_is_on_the_left():
+                move_down(2)
+                if wall_is_beneath():
+                    move_up()
+                    move_right()
+                    break
+                move_up()
+                move_right()
             fill_cell()
             move_right()
-        fill_cell()
+            if wall_is_on_the_right():
+                move_down()
+                move_left()
+                while True:
+                    fill_cell()
+                    move_left()
+                    if wall_is_on_the_left():
+                        break
 
     move_right()
-    for i in range(6):
-        move_print_right(26)
-        move_down()
-        move_print_left(26)
-        move_down()
+    snake_print()
 
 
 if __name__ == '__main__':

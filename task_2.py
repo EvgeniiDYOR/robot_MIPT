@@ -15,6 +15,5 @@ def task_1_2():
             break
 
 
-
 if __name__ == '__main__':
     run_tasks()
